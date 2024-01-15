@@ -1,0 +1,8 @@
+spring:
+  liquibase:
+    contexts: prod
+
+drone:
+  battery:
+    audit:
+      enabled: false

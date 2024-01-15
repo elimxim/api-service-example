@@ -1,0 +1,446 @@
+{
+	"info": {
+		"_postman_id": "36105fae-2f08-4762-a57b-78fed7b2828b",
+		"name": "elimxim",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28750177"
+	},
+	"item": [
+		{
+			"name": "GET ALL DRONES 200",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/api/drones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"drones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET AVAILABLE DRONES 200",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/api/drones?filter=available",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"drones"
+					],
+					"query": [
+						{
+							"key": "filter",
+							"value": "available"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADD NEW DRONE 400",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"serialNumber\": \"#SERIAL_000005\",\r\n    \"model\": \"Middleweight\",\r\n    \"weightLimit\": 500,\r\n    \"batteryCapacity\": 60,\r\n    \"batteryLevel\": 30\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/drones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"drones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADD NEW DRONE 400",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"serialNumber\": \"#SERIAL_000005\",\r\n    \"model\": \"Middleweight\",\r\n    \"weightLimit\": 200,\r\n    \"batteryCapacity\": 20,\r\n    \"batteryLevel\": 30\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/drones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"drones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADD NEW DRONE 409",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"serialNumber\": \"#SERIAL_000001\",\r\n    \"model\": \"Middleweight\",\r\n    \"weightLimit\": 200,\r\n    \"batteryCapacity\": 60,\r\n    \"batteryLevel\": 30\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/drones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"drones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADD NEW DRONE 201",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"serialNumber\": \"#SERIAL_000005\",\r\n    \"model\": \"Middleweight\",\r\n    \"weightLimit\": 200,\r\n    \"batteryCapacity\": 50,\r\n    \"batteryLevel\": 30\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/drones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"drones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET DRONE 1 BATTERY LEVEL 200",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/api/drone/1/batteryLevel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"drone",
+						"1",
+						"batteryLevel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET DRONE 4 BATTERY LEVEL 200",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/api/drone/4/batteryLevel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"drone",
+						"4",
+						"batteryLevel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET DRONE 10 BATTERY LEVEL 404",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/api/drone/10/batteryLevel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"drone",
+						"10",
+						"batteryLevel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET DRONE 2 MEDICATIONS 200",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/api/drone/2/medications",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"drone",
+						"2",
+						"medications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET DRONE 3 MEDICATIONS 200",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/api/drone/3/medications",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"drone",
+						"3",
+						"medications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET DRONE 10 MEDICATIONS 404",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/api/drone/10/medications",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"drone",
+						"10",
+						"medications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOAD DRONE 10 MEDICATIONS 404",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"TEST_MED_5\",\r\n    \"weight\": 200,\r\n    \"code\": \"MED_005\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/drone/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"drone",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOAD NEW DRONE MEDICATIONS 400",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"TEST_MED_5\",\r\n    \"weight\": 250,\r\n    \"code\": \"MED_005\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/drone/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"drone",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOAD NEW DRONE MEDICATIONS 400",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"TEST_MED_5\",\r\n    \"weight\": 200,\r\n    \"code\": \"MED_004\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/drone/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"drone",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOAD NEW DRONE MEDICATIONS 200",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"TEST_MED_5\",\r\n    \"weight\": 200,\r\n    \"code\": \"MED_005\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/drone/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"drone",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET NEW DRONE MEDICATIONS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/api/drone/5/medications",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"drone",
+						"5",
+						"medications"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

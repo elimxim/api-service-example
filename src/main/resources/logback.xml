@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} -%kvp- %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="MAIN_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logs/drone_application.log</file>
+        <append>false</append>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} -%kvp- %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="DRONES_BATTERY_LEVEL_AUDIT" class="ch.qos.logback.core.FileAppender">
+        <file>logs/drone_battery_level_audit.log</file>
+        <append>false</append>
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="MAIN_FILE"/>
+    </root>
+
+    <logger name="com.musalasoft.artemis.elimxim.service.DroneBatteryAuditService" level="INFO" additivity="false">
+        <appender-ref ref="DRONES_BATTERY_LEVEL_AUDIT"/>
+    </logger>
+</configuration>

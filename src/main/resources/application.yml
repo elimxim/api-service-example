@@ -1,0 +1,33 @@
+server:
+  port: 8084
+  error:
+    include-message: always
+
+application:
+  database:
+    name: dev
+    schema: public
+
+spring:
+  datasource:
+    #driver-class-name: org.postgresql.Driver
+    #url: jdbc:postgresql://localhost:5432/dev
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+    url: jdbc:tc:postgresql:9.6.8:///${application.database.name}
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: ${application.database.schema}
+    hibernate:
+      ddl-auto: none
+  liquibase:
+    default-schema: ${application.database.schema}
+    change-log: db/changelog/db.changelog-main.xml
+    contexts: prod,dev
+
+drone:
+  battery:
+    audit:
+      enabled: true
+      cron: "0 * * * * ?"

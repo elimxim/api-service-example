@@ -1,0 +1,286 @@
+openapi: 3.0.3
+info:
+  title: Drone Dispatcher Open API
+  version: 1.0.0
+servers:
+  - url: https://localhost:8080/api
+    description: Test Server
+paths:
+  /drones:
+    get:
+      tags:
+        - DroneDispatcher
+      summary: Get drones
+      description: >
+        Returns drones depending on filter query parameter:
+        - all - all drones
+        - available - drones in 'IDLE' status
+        
+        Doesn't show medications
+      operationId: GetDrones
+      parameters:
+        - in: query
+          name: filter
+          required: false
+          schema:
+            $ref: '#/components/schemas/DroneFilter'
+            default: 'all'
+      responses:
+        '200':
+          description: Drones
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Drone'
+        '500':
+          description: Internal Server Error
+    post:
+      tags:
+        - DroneDispatcher
+      summary: Register a new drone
+      description: >
+        Register a new drone
+        
+        The drone contains the following required attributes:
+        - serial number (100 characters max);
+        - model (Lightweight, Middleweight, Cruiserweight, Heavyweight);
+        - weight limit (500gr max);
+        - battery capacity (percentage);
+        - battery level (percentage);
+        
+        Restrictions:
+        - another attributes will be ignored;
+        - register two drones with the same serial number isn't allowed;
+        - weight limit depends on the drone model;
+        - battery capacity depends on the drone model; 
+        
+        Weight limit and drone model dependency:
+        - Lightweight: from 1gr to 100gr;
+        - Middleweight: from 101gr to 200gr;
+        - Cruiserweight: from 201gr to 350gr;
+        - Heavyweight: from 351gr to 500gr;
+        
+        Battery capacity and drone model dependency:
+        - Lightweight: from 20% to 40%;
+        - Middleweight: from 41% to 60%;
+        - Cruiserweight: from 61% to 80%;
+        - Heavyweight: from 81$ to 100%;
+        
+        Behaviour after successful registration of a drone:
+        - the status will be automatically set to IDLE;
+        - successfully registered drone will be returned in response
+      operationId: registerDrone
+      requestBody:
+        description: Drone
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Drone'
+      responses:
+        '201':
+          description: Drone successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Drone'
+        '400':
+          description: Bad Request. Drone weight doesn't match drone model
+        '409':
+          description: Not unique serial number
+        '500':
+          description: Internal Server Error
+  /drone/{droneId}:
+    put:
+      tags:
+        - DroneDispatcher
+      summary: Load medication
+      description: >
+        Add a medication to the drone with specified ID
+        
+        The medication contains the following required attributes:
+        - name (allowed only letters, numbers, ‘-‘, ‘_’)
+        - weight in gram
+        - code (allowed only upper case letters, underscore and numbers)
+        
+        Restrictions:
+        - another attributes will be ignored;
+        - add two medications with the same code isn't allowed;
+      operationId: loadMedication
+      parameters:
+        - in: path
+          description: Unique drone identifier
+          name: droneId
+          required: true
+          schema:
+            $ref: '#/components/schemas/DroneId'
+      requestBody:
+        description: Medication
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Medication'
+      responses:
+        '200':
+          description: Loaded
+        '400':
+          description: Bad Request. Drone weight exceeded. Drone battery is low (less than 25%)
+        '404':
+          description: Drone not found
+        '409':
+          description: Not unique code
+        '500':
+          description: Internal Server Error
+  /drone/{droneId}/medications:
+    get:
+      tags:
+        - DroneDispatcher
+      summary: Get drone medications
+      description: >
+        Returns medications of the drone with specified ID
+      operationId: getDroneMedications
+      parameters:
+        - in: path
+          description: Unique drone identifier
+          name: droneId
+          required: true
+          schema:
+            $ref: '#/components/schemas/DroneId'
+      responses:
+        '200':
+          description: Drone medications
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Medication'
+        '404':
+          description: Drone not found
+        '500':
+          description: Internal Server Error
+  /drone/{droneId}/batteryLevel:
+    get:
+      tags:
+        - DroneDispatcher
+      summary: Get drone battery level
+      description: >
+        Returns the level of the drone battery
+      operationId: getDroneBatteryLevel
+      parameters:
+        - in: path
+          description: Unique drone identifier
+          name: droneId
+          required: true
+          schema:
+            $ref: '#/components/schemas/DroneId'
+      responses:
+        '200':
+          description: Drone battery level
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DroneBatteryLevel'
+        '404':
+          description: Drone not found
+        '500':
+          description: Internal Server Error
+
+components:
+  schemas:
+    DroneId:
+      description: Unique drone identifier
+      type: integer
+      format: int64
+    DroneBatteryLevel:
+      description: Current drone battery level in %
+      type: integer
+      format: int32
+      minimum: 0
+      maximum: 100
+    DroneModel:
+      description: Drone model
+      type: string
+      enum:
+        - Lightweight
+        - Middleweight
+        - Cruiserweight
+        - Heavyweight
+    DroneState:
+      description: Current drone state
+      type: string
+      enum:
+        - IDLE
+        - LOADING
+        - LOADED
+        - DELIVERING
+        - DELIVERED
+        - RETURNING
+    Drone:
+      description: Drone
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/DroneId'
+        serialNumber:
+          description: Unique serial number
+          type: string
+          minLength: 1
+          maxLength: 100
+        model:
+          $ref: '#/components/schemas/DroneModel'
+        weightLimit:
+          description: Maximum weight in gram
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 500
+        batteryLevel:
+          $ref: '#/components/schemas/DroneBatteryLevel'
+        batteryCapacity:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 100
+        state:
+          $ref: '#/components/schemas/DroneState'
+      required:
+        - serialNumber
+        - model
+        - weightLimit
+        - batteryLevel
+    Medication:
+      description: Medication
+      type: object
+      properties:
+        name:
+          description: Name
+          type: string
+          pattern: '[a-zA-Z0-9_-]+'
+        weight:
+          description: Wight in gram
+          type: integer
+          format: int32
+          minimum: 1
+        code:
+          description: Unique code
+          type: string
+          pattern: '[A-Z0-9_ ]+'
+        image:
+          description: Image in binary format
+          type: string
+          format: byte
+          nullable: true
+      required:
+        - name
+        - weight
+        - code
+    DroneFilter:
+      description: Drone filter
+      type: string
+      enum:
+        - all
+        - available

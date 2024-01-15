@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                            http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                            http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+
+    <changeSet id="insert_into_medication_table" author="Maksim Eliseev">
+        <insert tableName="drone">
+            <column name="id" value="1"/>
+            <column name="serial_number" value="#SERIAL_000001"/>
+            <column name="model" value="LIGHTWEIGHT"/>
+            <column name="weight_limit" value="100"/>
+            <column name="battery_capacity" value="40"/>
+            <column name="battery_level" value="100"/>
+            <column name="state" value="IDLE"/>
+        </insert>
+        <insert tableName="drone">
+            <column name="id" value="2"/>
+            <column name="serial_number" value="#SERIAL_000002"/>
+            <column name="model" value="MIDDLEWEIGHT"/>
+            <column name="weight_limit" value="200"/>
+            <column name="battery_capacity" value="60"/>
+            <column name="battery_level" value="50"/>
+            <column name="state" value="DELIVERING"/>
+        </insert>
+        <insert tableName="drone">
+            <column name="id" value="3"/>
+            <column name="serial_number" value="#SERIAL_000003"/>
+            <column name="model" value="CRUISERWEIGHT"/>
+            <column name="weight_limit" value="350"/>
+            <column name="battery_capacity" value="80"/>
+            <column name="battery_level" value="80"/>
+            <column name="state" value="LOADED"/>
+        </insert>
+        <insert tableName="drone">
+            <column name="id" value="4"/>
+            <column name="serial_number" value="#SERIAL_000004"/>
+            <column name="model" value="HEAVYWEIGHT"/>
+            <column name="weight_limit" value="500"/>
+            <column name="battery_capacity" value="100"/>
+            <column name="battery_level" value="24"/>
+            <column name="state" value="IDLE"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="reset_drone_id_seq" author="Maksim Eliseev">
+        <sql>
+            ALTER SEQUENCE drone_id_seq RESTART WITH 5;
+        </sql>
+    </changeSet>
+
+    <changeSet id="insert_into_drone_table" author="Maksim Eliseev">
+        <insert tableName="medication">
+            <column name="id" value="1"/>
+            <column name="name" value="TEST_MED_1"/>
+            <column name="weight" value="100"/>
+            <column name="code" value="MED_001"/>
+            <column name="drone_id" value="2"/>
+        </insert>
+        <insert tableName="medication">
+            <column name="id" value="2"/>
+            <column name="name" value="TEST_MED_2"/>
+            <column name="weight" value="40"/>
+            <column name="code" value="MED_002"/>
+            <column name="drone_id" value="3"/>
+        </insert>
+        <insert tableName="medication">
+            <column name="id" value="3"/>
+            <column name="name" value="TEST_MED_3"/>
+            <column name="weight" value="60"/>
+            <column name="code" value="MED_003"/>
+            <column name="drone_id" value="3"/>
+        </insert>
+        <insert tableName="medication">
+            <column name="id" value="4"/>
+            <column name="name" value="TEST_MED_4"/>
+            <column name="weight" value="200"/>
+            <column name="code" value="MED_004"/>
+            <column name="drone_id" value="3"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="reset_medication_id_seq" author="Maksim Eliseev">
+        <sql>
+            ALTER SEQUENCE medication_id_seq RESTART WITH 5;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
