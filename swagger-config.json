@@ -1,6 +1,6 @@
 {
   "library": "spring-mvc",
-  "apiPackage": "com.musalasoft.artemis.elimxim.api",
-  "modelPackage": "com.musalasoft.artemis.elimxim.api.model",
-  "invokerPackage": "com.musalasoft.artemis.elimxim.invoker"
+  "apiPackage": "org.github.elimxim.api",
+  "modelPackage": "org.github.elimxim.api.model",
+  "invokerPackage": "org.github.elimxim.invoker"
 }

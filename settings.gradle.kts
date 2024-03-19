@@ -1,4 +1,4 @@
-rootProject.name = "drones"
+rootProject.name = "api-service-example"
 gradle.rootProject {
-    group = "com.musala.artemis.elimxim"
+    group = "org.github.elimxim"
 }

@@ -1,23 +1,48 @@
-## Drones
+# RESTful API Service 
 
-[[_TOC_]]
+This example demonstrates main technologies/techniques and code organization/style 
+for developing typical RESTful API service.
 
----
+## Technologies / Frameworks
 
-:scroll: **START**
+- Core
+  - Java
+  - Spring Boot
+- DevOps
+  - Gradle + Kotlin extension
+  - Docker
+- API Development
+  - Spring Web MVC
+  - Open API / OAS
+  - Swagger Codegen
+- Data Management
+  - Spring Data JPA / Hibernate
+  - Liquibase
+- Logging
+  - Slf4j / Logback
+- Jobs Scheduling
+  - Quartz Scheduler
+- Testing
+  - JUnit5
+  - Testcontainers
+- Boilerplate code
+  - Mapstruct
+  - Lombok
 
+## Example specification
 
-### Introduction
+There is a major new technology that is destined to be a disruptive force in the field 
+of transportation: **the drone**. Just as the mobile phone allowed developing countries 
+to leapfrog older technologies for personal communication, the drone has the potential 
+to leapfrog traditional transportation infrastructure.
 
-There is a major new technology that is destined to be a disruptive force in the field of transportation: **the drone**. Just as the mobile phone allowed developing countries to leapfrog older technologies for personal communication, the drone has the potential to leapfrog traditional transportation infrastructure.
-
-Useful drone functions include delivery of small items that are (urgently) needed in locations with difficult access.
-
----
+Useful drone functions include delivery of small items that are (urgently) needed in 
+locations with difficult access.
 
 ### Task description
 
-We have a fleet of **10 drones**. A drone is capable of carrying devices, other than cameras, and capable of delivering small loads. For our use case **the load is medications**.
+We have a fleet of **10 drones**. A drone is capable of carrying devices, other than cameras, 
+and capable of delivering small loads. For our use case **the load is medications**.
 
 A **Drone** has:
 - serial number (100 characters max);
@@ -32,7 +57,8 @@ Each **Medication** has:
 - code (allowed only upper case letters, underscore and numbers);
 - image (picture of the medication case).
 
-Develop a service via REST API that allows clients to communicate with the drones (i.e. **dispatch controller**). The specific communicaiton with the drone is outside the scope of this task. 
+Develop a service via REST API that allows clients to communicate with the drones 
+(i.e. **dispatch controller**). The specific communicaiton with the drone is outside the scope of this task. 
 
 The service should allow:
 - registering a drone;
@@ -41,9 +67,7 @@ The service should allow:
 - checking available drones for loading;
 - check drone battery level for a given drone;
 
-> Feel free to make assumptions for the design approach. 
-
----
+> Feel free to make assumptions for the design approach.
 
 ### Requirements
 
@@ -56,8 +80,6 @@ While implementing your solution **please take care of the following requirement
 - Prevent the drone from being in LOADING state if the battery level is **below 25%**;
 - Introduce a periodic task to check drones battery levels and create history/audit event log for this.
 
----
-
 #### Non-functional requirements
 
 - Input/output data must be in JSON format;
@@ -67,6 +89,93 @@ While implementing your solution **please take care of the following requirement
 - JUnit tests are mandatory;
 - Advice: Show us how you work through your commit history.
 
----
+## Development
 
-:scroll: **END**
+Developer environment:
+
+- Windows 11
+- JDK 20
+  ```shell
+  java version "20.0.1" 2023-04-18
+  Java(TM) SE Runtime Environment (build 20.0.1+9-29)
+  Java HotSpot(TM) 64-Bit Server VM (build 20.0.1+9-29, mixed mode, sharing)
+  ```
+- Docker Desktop v4.26.1
+- Intellij IDEA 2023.1.3 (Community Edition)
+
+Environment requirements:
+
+- JDK 20
+- Docker
+
+There is no need to prepare a database because the project runs on test containers,
+reducing prep work for code reviewers. The service listens on port **8084**.
+
+To build the project from the console:
+
+_Unix_
+
+```shell
+./gradlew build
+```
+
+_Windows_
+
+```shell
+gradlew.bat build
+```
+
+To run the application from the console:
+
+_Unix_
+
+```shell
+./gradlew bootRun
+```
+
+_Windows_
+
+```shell
+gradlew.bat bootRun
+```
+
+To run tests from the console:
+
+_Unix_
+
+```shell
+./gradlew test
+```
+
+_Windows_
+
+```shell
+gradlew.bat test
+```
+
+## Additional information
+
+- the project uses _gradle wrapper_, so there is no need to use the installed one
+- the project uses OAS to generate HTTP API and DTO entities
+- the project contains the `postman.json` postman collection with prepared HTTP request
+- `src/main/resources/db/changelog/db.changelog-dev.xml` contains prepared data
+- application's logs are in the `logs/` folder of the project root directory
+
+## Assumptions
+
+- *Drone.weightLimit* depends on *Drone.model*
+- *Drone.batteryCapacity* is a percentage of the battery's ideal value and depends on *Drone.model*
+- *Drone.batteryCapacity* depends on *Drone.model*
+- **Drone.serialNumber** is unique to all drones
+- **Medication.code** is unique to all medications
+- Available drones are drones in **IDLE** state
+- Registered drone is set into **IDLE** state
+
+Drone Model characteristics:
+
+| Drone Model   | Weight limit (gr) | Battery capacity (%) |
+|---------------|-------------------|----------------------|
+| Lightweight   | from 1 to 100     | from 20 to 40        |
+| Middleweight  | from 101 to 200   | from 41 to 60        |
+| Cruiserweight | from 201 to 350   | from 61 to 80        |
+| Heavyweight   | from 351 to 500   | from 81 to 100       |
