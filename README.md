@@ -11,7 +11,7 @@ for developing typical RESTful API service.
 - DevOps
   - Gradle + Kotlin extension
   - Docker
-- API Development
+- REST API
   - Spring Web MVC
   - Open API / OAS
   - Swagger Codegen
