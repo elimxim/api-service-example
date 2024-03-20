@@ -19,7 +19,7 @@ for developing typical RESTful API service.
   - Spring Data JPA / Hibernate
   - Liquibase
 - Logging
-  - Slf4j / Logback
+  - Slf4j + Logback
 - Jobs Scheduling
   - Quartz Scheduler
 - Testing
