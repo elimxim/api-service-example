@@ -28,7 +28,7 @@
         <appender-ref ref="MAIN_FILE"/>
     </root>
 
-    <logger name="org.github.elimxim.service.DroneBatteryAuditService" level="INFO" additivity="false">
+    <logger name="com.github.elimxim.restfulex.service.DroneBatteryAuditService" level="INFO" additivity="false">
         <appender-ref ref="DRONES_BATTERY_LEVEL_AUDIT"/>
     </logger>
 </configuration>
