@@ -1,19 +1,25 @@
-# RESTful API Service 
+# RESTful API Service Example
 
-This example demonstrates main technologies/techniques and code organization/style 
-for developing typical RESTful API service.
+This example demonstrates the basic technologies/methods and code organization/style 
+for developing a typical RESTful API service.
 
-## Technologies / Frameworks
+---
+1. [Technology Stack](#technology-stack)
+2. [Domain Example](#domain-example)
+   2.1. [Requirements](#requirements)
+   2.2. [Functional requirements](#functional-requirements)
+   2.3. [Non-functional requirements](#non-functional-requirements)
+3. [Development](#development)
+---
+
+## Technology Stack
 
 - Core
-  - Java
+  - Java (or Kotlin)
   - Spring Boot
-- DevOps
-  - Gradle + Kotlin extension
-  - Docker
 - REST API
   - Spring Web MVC
-  - Open API / OAS
+  - Open API
   - Swagger Codegen
 - Data Management
   - Spring Data JPA / Hibernate
@@ -22,14 +28,17 @@ for developing typical RESTful API service.
   - Slf4j + Logback
 - Jobs Scheduling
   - Quartz Scheduler
+- DevOps
+  - Gradle + Kotlin extension
+  - Docker
 - Testing
-  - JUnit5
+  - JUnit 5
   - Testcontainers
-- Boilerplate code
+- Other tools
   - Mapstruct
   - Lombok
 
-## Example specification
+## Domain Example
 
 There is a major new technology that is destined to be a disruptive force in the field 
 of transportation: **the drone**. Just as the mobile phone allowed developing countries 
@@ -39,7 +48,7 @@ to leapfrog traditional transportation infrastructure.
 Useful drone functions include delivery of small items that are (urgently) needed in 
 locations with difficult access.
 
-### Task description
+### Requirements
 
 We have a fleet of **10 drones**. A drone is capable of carrying devices, other than cameras, 
 and capable of delivering small loads. For our use case **the load is medications**.
@@ -69,10 +78,6 @@ The service should allow:
 
 > Feel free to make assumptions for the design approach.
 
-### Requirements
-
-While implementing your solution **please take care of the following requirements**: 
-
 #### Functional requirements
 
 - There is no need for UI;
@@ -91,77 +96,7 @@ While implementing your solution **please take care of the following requirement
 
 ## Development
 
-Developer environment:
-
-- Windows 11
-- JDK 20
-  ```shell
-  java version "20.0.1" 2023-04-18
-  Java(TM) SE Runtime Environment (build 20.0.1+9-29)
-  Java HotSpot(TM) 64-Bit Server VM (build 20.0.1+9-29, mixed mode, sharing)
-  ```
-- Docker Desktop v4.26.1
-- Intellij IDEA 2023.1.3 (Community Edition)
-
-Environment requirements:
-
-- JDK 20
-- Docker
-
-There is no need to prepare a database because the project runs on test containers,
-reducing prep work for code reviewers. The service listens on port **8084**.
-
-To build the project from the console:
-
-_Unix_
-
-```shell
-./gradlew build
-```
-
-_Windows_
-
-```shell
-gradlew.bat build
-```
-
-To run the application from the console:
-
-_Unix_
-
-```shell
-./gradlew bootRun
-```
-
-_Windows_
-
-```shell
-gradlew.bat bootRun
-```
-
-To run tests from the console:
-
-_Unix_
-
-```shell
-./gradlew test
-```
-
-_Windows_
-
-```shell
-gradlew.bat test
-```
-
-## Additional information
-
-- the project uses _gradle wrapper_, so there is no need to use the installed one
-- the project uses OAS to generate HTTP API and DTO entities
-- the project contains the `postman.json` postman collection with prepared HTTP request
-- `src/main/resources/db/changelog/db.changelog-dev.xml` contains prepared data
-- application's logs are in the `logs/` folder of the project root directory
-
-## Assumptions
+### Assumptions
 
 - *Drone.weightLimit* depends on *Drone.model*
 - *Drone.batteryCapacity* is a percentage of the battery's ideal value and depends on *Drone.model*
@@ -179,3 +114,45 @@ Drone Model characteristics:
 | Middleweight  | from 101 to 200   | from 41 to 60        |
 | Cruiserweight | from 201 to 350   | from 61 to 80        |
 | Heavyweight   | from 351 to 500   | from 81 to 100       |
+
+
+### Launching
+
+Environment requirements:
+
+- JDK _20_ or above
+  ```shell
+  java version "20.0.1" 2023-04-18
+  Java(TM) SE Runtime Environment (build 20.0.1+9-29)
+  Java HotSpot(TM) 64-Bit Server VM (build 20.0.1+9-29, mixed mode, sharing)
+  ```
+- Docker Desktop `v4.26.1`
+
+There is no need to prepare a database because the project runs on test containers,
+reducing prep work for code reviewers. The service listens on port **8084**.
+
+To build the project from the console:
+
+```shell
+./gradlew build
+```
+
+To run the application:
+
+```shell
+./gradlew bootRun
+```
+
+To run tests from the console:
+
+```shell
+./gradlew test
+```
+
+### Additional information
+
+- the project uses _gradle wrapper_, so there is no need to use the installed one
+- the project uses OAS to generate HTTP API and DTO entities
+- the project contains the `postman.json` postman collection with prepared HTTP request
+- `src/main/resources/db/changelog/db.changelog-dev.xml` contains prepared data
+- application's logs are in the `logs/` folder of the project root directory
