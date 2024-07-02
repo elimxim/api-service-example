@@ -1,7 +1,7 @@
 package org.github.elimxim.service.validator;
 
-import org.github.elimxim.api.model.Drone;
-import org.github.elimxim.api.model.DroneModel;
+import com.github.elimxim.api.model.Drone;
+import com.github.elimxim.api.model.DroneModel;
 import org.github.elimxim.service.Messages;
 import org.github.elimxim.service.exception.IllegalDroneBatteryCapacityException;
 import org.github.elimxim.service.exception.IllegalDroneWeightException;

@@ -1,9 +1,9 @@
 package org.github.elimxim.service;
 
-import org.github.elimxim.api.model.Drone;
-import org.github.elimxim.api.model.DroneModel;
-import org.github.elimxim.api.model.DroneState;
-import org.github.elimxim.api.model.Medication;
+import com.github.elimxim.api.model.Drone;
+import com.github.elimxim.api.model.DroneModel;
+import com.github.elimxim.api.model.DroneState;
+import com.github.elimxim.api.model.Medication;
 import org.github.elimxim.domain.mapping.DroneDtoMapper;
 import org.github.elimxim.domain.mapping.MedicationDtoMapper;
 import org.github.elimxim.domain.repository.DroneRepository;

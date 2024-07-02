@@ -10,13 +10,13 @@ import java.util.List;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface MedicationDtoMapper {
 
-    List<org.github.elimxim.api.model.Medication> toMedications(List<Medication> source);
+    List<com.github.elimxim.api.model.Medication> toMedications(List<Medication> source);
 
-    List<Medication> fromMedications(List<org.github.elimxim.api.model.Medication> source);
+    List<Medication> fromMedications(List<com.github.elimxim.api.model.Medication> source);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "drone", ignore = true)
-    Medication fromMedication(org.github.elimxim.api.model.Medication source);
+    Medication fromMedication(com.github.elimxim.api.model.Medication source);
 
 
 }

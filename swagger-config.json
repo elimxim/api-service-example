@@ -1,6 +1,6 @@
 {
   "library": "spring-mvc",
-  "apiPackage": "org.github.elimxim.api",
-  "modelPackage": "org.github.elimxim.api.model",
+  "apiPackage": "com.github.elimxim.api",
+  "modelPackage": "com.github.elimxim.api.model",
   "invokerPackage": "org.github.elimxim.invoker"
 }

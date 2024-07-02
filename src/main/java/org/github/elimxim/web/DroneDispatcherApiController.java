@@ -1,10 +1,10 @@
 package org.github.elimxim.web;
 
 import org.github.elimxim.service.DroneDispatcher;
-import org.github.elimxim.api.DroneDispatcherApi;
-import org.github.elimxim.api.model.Drone;
-import org.github.elimxim.api.model.DroneFilter;
-import org.github.elimxim.api.model.Medication;
+import com.github.elimxim.api.DroneDispatcherApi;
+import com.github.elimxim.api.model.Drone;
+import com.github.elimxim.api.model.DroneFilter;
+import com.github.elimxim.api.model.Medication;
 import org.github.elimxim.service.exception.HttpResponseException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
