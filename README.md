@@ -4,11 +4,11 @@ This example demonstrates the basic technologies/methods and code organization/s
 for developing a typical RESTful API service.
 
 ---
-1. [Technology Stack](#technology-stack)
-2. [Domain Example](#domain-example)
-   2.1. [Requirements](#requirements)
-   2.2. [Functional requirements](#functional-requirements)
-   2.3. [Non-functional requirements](#non-functional-requirements)
+1. [Technology Stack](#technology-stack)  
+2. [Domain Example](#domain-example)  
+   2.1. [Requirements](#requirements)  
+   2.2. [Functional requirements](#functional-requirements)  
+   2.3. [Non-functional requirements](#non-functional-requirements)  
 3. [Development](#development)
 ---
 
