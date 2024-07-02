@@ -1,4 +1,4 @@
-rootProject.name = "api-service-example"
+rootProject.name = "restfulex"
 gradle.rootProject {
-    group = "org.github.elimxim"
+    group = "com.github.elimxim"
 }
